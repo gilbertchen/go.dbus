@@ -96,7 +96,7 @@ func SessionBusPrivate() (*Conn, error) {
 		return Dial(address)
 	}
 
-	return sessionBusPlatform()
+	return nil, errors.New("dbus: DBUS_SESSION_BUS_ADDRESS not set")
 }
 
 // SystemBus returns a shared connection to the system bus, connecting to it if
