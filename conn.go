@@ -175,6 +175,10 @@ func (conn *Conn) BusObject() *Object {
 // not be called on shared connections.
 func (conn *Conn) Close() error {
 	conn.outLck.Lock()
+        if conn.closed {
+            conn.outLck.Unlock()
+            return nil
+        }
 	close(conn.out)
 	conn.closed = true
 	conn.outLck.Unlock()
